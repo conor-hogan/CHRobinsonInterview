@@ -1,8 +1,8 @@
 class Country {
     constructor(name, connected_countries, full_name){
-        this.name = name;
-        this.connected_countries = connected_countries;
-        this.full_name = full_name;
+        this.name = name; //String representing 3 letter abbreviation of country
+        this.connected_countries = connected_countries; //array of country objects representing the countries one can travel to from the country object
+        this.full_name = full_name; //String representing full name of country used for printing country name
     }
 
     getConnectedCountries(){
@@ -14,17 +14,19 @@ class Country {
     }
 }
 
+//Initializing country variables. temp put in for connected countries so all country objects can be initialized before use
 let CAN = new Country("CAN", "temp", "Canada");
 let USA = new Country("USA", "temp", "United States");
 let MEX = new Country("MEX", "temp", "Mexico");
 let BLZ = new Country("BLZ", "temp", "Belize");
-let GTM = new Country("GTM", "temp", "Guatamala");
+let GTM = new Country("GTM", "temp", "Guatemala");
 let SLV = new Country("SLV", "temp", "El Salvador");
 let HND = new Country("HND", "temp", "Honduras");
 let NIC = new Country("NIC", "temp", "Nicaragua");
 let CRI = new Country("CRI", "temp", "Costa Rica");
 let PAN = new Country("PAN", "temp", "Panama");
 
+//Setting connected_country attribute for all countries
 CAN.setConnectedCountries([USA]);
 USA.setConnectedCountries([CAN, MEX]);
 MEX.setConnectedCountries([USA, GTM, BLZ]);
@@ -36,8 +38,10 @@ NIC.setConnectedCountries([HND, CRI]);
 CRI.setConnectedCountries([NIC, PAN]);
 PAN.setConnectedCountries([CRI]);
 
+//An array of all countries created to check user input
 let countryArray = [CAN, USA, MEX, BLZ, GTM, SLV, HND, NIC, CRI, PAN];
 
+//Checks if a given country has already been visited. visitedCountries is an array assumed to be all countries reached by search algorithm.
 function visitedCountriesChecker(country, visitedCountries){
     for(let i = 0; i < visitedCountries.length; i++){
         if(visitedCountries[i] == country){
@@ -47,8 +51,10 @@ function visitedCountriesChecker(country, visitedCountries){
     return false;
 }
 
+//Function to get the path from the USA to a given country
 function getPath(country){
-    if(country == USA){
+    //Base case, returns singular array signifying that USA's path is just USA
+    if(country == USA){ 
         return [USA];
     }
     let visitedCountries = [USA]
@@ -90,16 +96,17 @@ function master(){
             for(let j = 0; j < pathArray.length - 1; j++){
                 document.write(pathArray[j].name + " --> ");
             }
-            document.write(pathArray[pathArray.length-1].name);
+            document.write(pathArray[pathArray.length-1].name + "<br><br>");
+            document.write("If you would like to view the path for another country, please refresh the page and enter that country's code.")
         }
     }
     if(!correct_input){
-        document.write("Incorrect input, please reload the page and try again. The correct inputs for available countries are as follows <br>");
+        document.write("Incorrect input, please reload the page and try again. The correct inputs for available countries are as follows: <br>");
         document.write("Canada: CAN<br>");
         document.write("United States: USA<br>");
         document.write("Mexico: MEX<br>");
         document.write("Belize: BLZ<br>");
-        document.write("Guatamala: GTM<br>");
+        document.write("Guatemala: GTM<br>");
         document.write("El Salvador: SLV<br>");
         document.write("Honduras: HND<br>");
         document.write("Nicaragua: NIC<br>");
