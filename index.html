@@ -2,17 +2,25 @@
 <html>
     <head>
         <title>Conor Hogan's CH Robinson Interview Project</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
 
     <body>
         <h1>Conor Hogan's CH Robinson Interview Project</h1>
         <p>This web application takes in a three letter country code and returns all countries that are passed through in order to travel from the United States to the given country. Please enter the desired country code below:</p>
 
-        <input id="userInput"><br><br>
 
-        <button onclick="master()">Get Path</button> <br>
+        <form method ="get" action="display.html">
+            <fieldset>
+                <legend>Enter Country Code</legend>
+                <table>
+                    <tr><td> <input type = "text" name = "countryCode"> </td></tr>
+                    <tr><td><input type = "submit" value = "GetPath"></td> </tr>
+                </table>
 
-        <script src = "app.js"></script>
+            </fieldset>
+        </form>
+
         <h2> Country codes are as follows:</h2>
         <p><img src = "images/Canada.svg" alt = "Canadian Flag" height="15" width = "20"> Canada: CAN <br></p>
         <p><img src = "images/USflag.png" alt = "US Flag" height="15" width = "20"> United States: USA <br></p>

@@ -86,34 +86,38 @@ function getPath(country){
     }
 }
 function master(){
-    let input = document.getElementById("userInput").value;
+    let outPutString = "";
+    let input = location.search.split("countryCode=")[1];
     let correct_input = false;
     for(let i = 0; i < countryArray.length; i++){
         if(input == countryArray[i].name){
             correct_input = true;
-            document.write("The path for " + countryArray[i].full_name + " is:<br>");
+            outPutString += ("The path for " + countryArray[i].full_name + " is:<br>");
             let pathArray = getPath(countryArray[i]);
             for(let j = 0; j < pathArray.length - 1; j++){
-                document.write(pathArray[j].name + " --> ");
+                outPutString += (pathArray[j].name + " --> ");
             }
-            document.write(pathArray[pathArray.length-1].name + "<br><br>");
-            document.write("If you would like to view the path for another country, please refresh the page and enter that country's code.")
+            outPutString += (pathArray[pathArray.length-1].name + "<br><br>");
         }
     }
     if(!correct_input){
-        document.write("Incorrect input, please reload the page and try again. The correct inputs for available countries are as follows: <br>");
-        document.write("Canada: CAN<br>");
-        document.write("United States: USA<br>");
-        document.write("Mexico: MEX<br>");
-        document.write("Belize: BLZ<br>");
-        document.write("Guatemala: GTM<br>");
-        document.write("El Salvador: SLV<br>");
-        document.write("Honduras: HND<br>");
-        document.write("Nicaragua: NIC<br>");
-        document.write("Costa Rica: CRI<br>");
-        document.write("Panama: PAN<br>");
+        outPutString += ("Incorrect input, please try again by clicking the button below. The correct inputs for available countries are as follows: <br>");
+        outPutString += ("Canada: CAN<br>");
+        outPutString += ("United States: USA<br>");
+        outPutString += ("Mexico: MEX<br>");
+        outPutString += ("Belize: BLZ<br>");
+        outPutString += ("Guatemala: GTM<br>");
+        outPutString += ("El Salvador: SLV<br>");
+        outPutString += ("Honduras: HND<br>");
+        outPutString += ("Nicaragua: NIC<br>");
+        outPutString += ("Costa Rica: CRI<br>");
+        outPutString += ("Panama: PAN<br>");
     }
+    return outPutString;
 }
+
+document.getElementById("output").innerHTML = master();
+
 
 
 
